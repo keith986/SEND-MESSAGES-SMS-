@@ -20,12 +20,12 @@ res.render('index');
 });
 
 app.post('/', (req,res) => {
-    const {bdy} = req.body;
+    const {phone,bdy} = req.body;
 
     const client = new twilio(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
     return client.messages.create({
-        to : process.env.TWILIO_PHONE_NUMBER,
-        from : '',
+        to : phone,
+        from : process.env.TWILIO_PHONE_NUMBER,
         body : bdy
     });
 });
